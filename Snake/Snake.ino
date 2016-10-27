@@ -44,7 +44,7 @@ int xapple=random(8);
 int yapple=random(8);  
 boolean gotapple = true;
 int binary= 0;
-int speed =250;
+int speed =750;
      
                                 
 struct Point
@@ -87,6 +87,9 @@ void loop()                     // run over and over again
     else   
     {
       binary = 0; 
+      marker = marker + 1;
+      speed = speed - 25;
+      
         
     }
   }
