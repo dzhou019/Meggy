@@ -44,7 +44,8 @@ int xapple=random(8);
 int yapple=random(8);  
 boolean gotapple = true;
 int binary= 0;
-int speed =750;
+int speed =200;
+boolean gameOver = false;
      
                                 
 struct Point
@@ -62,6 +63,7 @@ int marker = 4;                // Index of the first empty segement of array
 int direction = 0;
 
 void drawSnake();
+void updateSnake();
 
 void setup()                    // run once, when the sketch starts
 {
@@ -72,11 +74,13 @@ void setup()                    // run once, when the sketch starts
 
 void loop()                     // run over and over again
 {
-  updateSnake();
-  DrawPx(xapple,yapple,Red);
-  //Have eaten apple
-  if (ReadPx(snakeArray[0].x,snakeArray[0].y)==Red)
+  if (gameOver == false)
   {
+   updateSnake();
+   DrawPx(xapple,yapple,Red);
+   //Have eaten apple
+   if (ReadPx(snakeArray[0].x,snakeArray[0].y)==Red)
+   {
     xapple = random(8);         // Roll new values for apple
     yapple = random(8);  
     Tone_Start(18182,50);
@@ -88,7 +92,7 @@ void loop()                     // run over and over again
     {
       binary = 0; 
       marker = marker + 1;
-      speed = speed - 25;
+      speed = 200;
       
         
     }
@@ -117,14 +121,23 @@ void loop()                     // run over and over again
   {
      direction=270;
   }
+  }
+  else 
+  {
+    // Game over function goes here
+    void gameoverscreen()
+  {
+  
+    
+  
+  }
 }
 
 
 // Checks the direction and updates the x or y value
 void updateSnake()
-{
+
                                       //Move body
-  
   for (int i = marker - 1; i > 0; i--)
   {
     // Copy values at i-1 into i
@@ -183,5 +196,7 @@ void drawSnake()
       DrawPx(snakeArray[i].x, snakeArray[i].y, Blue); // Draw the snake.                                       
     }
 }
+
+
 
 
